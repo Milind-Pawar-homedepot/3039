@@ -1,0 +1,193 @@
+<script type="text/javascript">
+	try {
+		const tnt_hdpp = ({ animationName, target }) => {
+			if (animationName === 'card-background') {
+				console.log('card-background');
+				const assembleWidget = document.querySelectorAll(
+					'.product-add-ons--card-background .product-add-ons__card'
+				)[0];
+				let hdpp;
+				if (
+					document.querySelectorAll(
+						'.product-add-ons--card-background .product-add-ons__card'
+					)[1]
+				) {
+					hdpp = document.querySelectorAll(
+						'.product-add-ons--card-background .product-add-ons__card'
+					)[1];
+				} else {
+					hdpp = document.querySelectorAll(
+						'.product-add-ons--card-background .product-add-ons__card'
+					)[0];
+				}
+				hdpp.classList.add('tnt_target');
+
+				const tntCarrot =
+					'<div id="tnt_arrow_mob" class="carrotWrapper"><svg class="tnt_carrot tnt_carrot-down" viewBox="0 0 12 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlnssketch="http://www.bohemiancoding.com/sketch/ns"><defs></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketchtype="MSPage"><path d="M-5.88468462,4.30628135 L-5.88468462,3.33793528 L8.61614419,3.33793528 L8.61614419,5.27462742 L-3.95902124,5.27462742 L-3.95902124,17.8776664 L-5.88468462,17.8776664 L-5.88468462,4.30628135 Z" id="next-arrow" fill="#F96302" sketchtype="MSShapeGroup" transform="translate(1.365730, 10.607801) rotate(-225.000000) translate(-1.365730, -10.607801) "></path></g></svg></div>';
+				assembleWidget.before(hdpp);
+				document.querySelector('.tnt_target .product-add-on-tooltip-content__label').parentElement.style.position = 'relative';
+				hdpp
+					.querySelector('.buybox__add-on.product-add-ons-pod')
+					.insertAdjacentHTML('afterbegin', tntCarrot);
+
+				document
+					.querySelector(
+						'.product-add-ons-pod__content [data-testid="subHeading"]'
+					)
+					.classList.add('tnt_hide');
+
+				document.querySelector(
+					'.product-add-ons-pod__content'
+				).style.marginBottom = '10px';
+				document
+					.querySelector(
+						'.product-add-ons-pod__content .product-add-ons-pod__content__main'
+					)
+					.classList.add('tnt_style');
+				document
+					.querySelector('.product-add-ons-pod__content__group-wrapper')
+					.classList.add('tnt_block');
+				
+				document
+					.querySelector('.carrotWrapper')
+					.addEventListener('click', (e) => {
+						if (
+							!document
+								.querySelector(
+									'.product-add-ons-pod__content .product-add-ons-pod__content__group-wrapper'
+								)
+								.classList.value.includes('tnt_dropdown')
+						) {
+							document
+								.querySelector(
+									'.product-add-ons-pod__content .product-add-ons-pod__content__group-wrapper'
+								)
+								.classList.add('tnt_dropdown');
+						} else {
+							document
+								.querySelector(
+									'.product-add-ons-pod__content .product-add-ons-pod__content__group-wrapper'
+								)
+								.classList.remove('tnt_dropdown');
+						}
+
+						if (
+							document
+								.querySelector('.tnt_carrot')
+								.classList.value.includes('tnt_carrot-down')
+						) {
+							document
+								.querySelector('.tnt_carrot')
+								.classList.remove('tnt_carrot-down');
+							document
+								.querySelector('.tnt_carrot')
+								.classList.add('tnt_carrot-up');
+						} else if (
+							document
+								.querySelector('.tnt_carrot')
+								.classList.value.includes('tnt_carrot-up')
+						) {
+							document
+								.querySelector('.tnt_carrot')
+								.classList.remove('tnt_carrot-up');
+							document
+								.querySelector('.tnt_carrot')
+								.classList.add('tnt_carrot-down');
+						}
+					});
+		        
+
+                    if(  document.getElementById('tnt_arrow_mob'))
+          {
+              document.getElementById('tnt_arrow_mob').onclick = (event) => {
+                
+              adobe.target.trackEvent({ mbox: 'mw_hdpp_zoneA' })
+          }}
+                }
+		};
+
+		document.addEventListener('animationstart', tnt_hdpp, false);
+		document.addEventListener('webkitAnimationStart', tnt_hdpp, false);
+	} catch (e) {}
+</script>
+<style>
+	/* For animation*/
+	@media (orientation: landscape) {
+		body {
+			flex-direction: row;
+		}
+	}
+	@keyframes card-background {
+		from {
+			opacity: 0.99;
+		}
+
+		to {
+			opacity: 1;
+		}
+	}
+
+	@keyframes dropDown {
+		from {
+			transform: translateY(-100%);
+			opacity: 0;
+		}
+		to {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+
+	.product-add-ons-pod__content__group-wrapper.tnt_dropdown {
+		animation: dropdown 1s;
+		display: block;
+		margin-left: -3rem;
+		margin-top: 4rem;
+	}
+	.tnt_block {
+		display: none;
+	}
+
+	section.product-add-ons--card-background {
+		animation: card-background 0.001s;
+	}
+	.carrotWrapper {
+		position: absolute;
+		left: 91%;
+		cursor: pointer;
+		width: 4rem;
+		height: 3rem;
+		margin: 0.9rem 0 0 -0.3rem;
+	}
+	.tnt_carrot-down {
+		transform: rotate(88deg);
+	}
+	.tnt_carrot {
+		height: 14px;
+		width: 80%;
+	}
+	.tnt_carrot-up {
+		transform: rotate(-91deg);
+	}
+	.tnt_hide {
+		display: none;
+	}
+	.buybox__add-on.product-add-ons-pod [src="https://assets.homedepot-static.com/images/v1/hdpp-allstate.svg"]
+	{
+		margin: 0px;
+	}
+	.tnt_style {
+		display: flex;
+		margin-top: 4px;
+	}
+
+	.tnt_target .product-add-on-tooltip-content__label__suffix[src="https://assets.homedepot-static.com/images/v1/info.svg"]
+	{
+		display: none;
+	}
+
+	.tnt_target .product-add-on-tooltip-content__label {
+		position: absolute;
+		top: 3rem;
+	}
+</style>
